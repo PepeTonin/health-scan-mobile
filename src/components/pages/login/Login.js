@@ -1,65 +1,68 @@
 import { useState } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { Text, Button, Divider } from 'react-native-paper'
+import { View } from 'react-native';
+import { Button } from 'react-native-paper'
 import InputText from '../../shared/InputText';
 import Colors from '../../../css/default/Colors';
-import Fonts from '../../../css/default/Fonts';
+import {
+  StyledContainer,
+  StyledContainerInterno,
+  StyledDividerEspacado,
+  StyledInputContainer,
+  StyledTextoBranco,
+  StyledTitle,
+  StyledCardContainer,
+  StyledLogo,
+  StyledTextGeral,
+  StyledButtonCard,
+  StyledButtonContainer
+} from './style';
 
 export default function Login() {
 
   const [login, setLogin] = useState("")
   const [senha, setSenha] = useState("")
 
-  return ( 
-    <View style={styles.container}>
-      <View style={styles.containerInterno}>
-        <Text
-          variant="headlineLarge"
-          style={styles.title}>
+  return (
+    <StyledContainer>
+      <StyledContainerInterno>
+        <StyledTitle
+          variant="headlineLarge">
           BEM VINDO
-        </Text>
-        <View style={styles.cardContainer}>
+        </StyledTitle>
+        <StyledCardContainer>
           <>
-            <Image
-              style={styles.logo}
+            <StyledLogo
               source={require('../../../assets/icone-sem-fundo.png')}
             />
           </>
           <View style={{ marginLeft: 60 }}>
-            <Text
-              variant='titleLarge'
-              style={styles.textoBranco}>
+            <StyledTextoBranco
+              variant='titleLarge'>
               Healthscan
-            </Text>
-            <Text
-              variant="titleSmall"
-              style={styles.textoBranco}>
+            </StyledTextoBranco>
+            <StyledTextoBranco
+              variant="titleSmall">
               {'escaneie seus alimentos\n viva saudável'}
-            </Text>
-            <Button
-              style={styles.buttonCard}
+            </StyledTextoBranco>
+            <StyledButtonCard
               buttonColor={Colors.white}
               mode="elevated"
               onPress={() => console.log('Pressed')}>
-              <Text
-                variant='labelLarge'
-                style={styles.textGeral}>
+              <StyledTextGeral
+                variant='labelLarge'>
                 CADASTRE-SE
-              </Text>
-            </Button>
+              </StyledTextGeral>
+            </StyledButtonCard>
           </View>
-        </View>
+        </StyledCardContainer>
 
-        <Divider
-          bold
-          style={styles.divider} />
+        <StyledDividerEspacado bold />
 
-        <Text
-          variant="headlineLarge"
-          style={styles.title}>
+        <StyledTitle
+          variant="headlineLarge">
           LOGIN
-        </Text>
-        <View style={styles.inputContainer}>
+        </StyledTitle>
+        <StyledInputContainer>
           <InputText
             title="Usuario"
             height={50}
@@ -78,8 +81,8 @@ export default function Login() {
             onChangeText={setSenha}
             value={senha}
           />
-        </View>
-        <View style={styles.buttonContainer}>
+        </StyledInputContainer>
+        <StyledButtonContainer>
           <Button
             textColor={Colors.primaryFontColorButton}
             buttonColor={Colors.primaryButtonColor}
@@ -90,65 +93,13 @@ export default function Login() {
           <Button
             mode="text"
             onPress={() => console.log('Pressed')}>
-            <Text
-              variant="labelMedium"
-              style={styles.title}>
+            <StyledTitle
+              variant="labelMedium">
               Esqueceu sua conta?
-            </Text>
+            </StyledTitle>
           </Button>
-        </View>
-      </View>
-    </View>
+        </StyledButtonContainer>
+      </StyledContainerInterno>
+    </StyledContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    marginTop: 20
-  },
-  buttonContainer: {
-    marginTop: 30
-  },
-  logo: {
-    width: 100,
-    height: 118,
-  },
-  containerInterno: {
-    marginHorizontal: 30
-  },
-  container: {
-    flex: 1,
-    backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
-  },
-  textoBranco: {
-    textAlign: "right",
-    color: Colors.primaryFontColorButton,
-    fontFamily: Fonts.primaryFont
-  },
-  cardContainer: {
-    backgroundColor: Colors.primaryButtonColor,
-    height: 150,
-    marginTop: 30,
-    borderRadius: 20,
-    flexDirection: 'row',
-    paddingHorizontal: 30,
-    alignItems: 'center'
-  },
-  buttonCard: {
-    height: 38,
-    marginTop: 5
-  },
-  title: {
-    color: Colors.primaryFontColor,
-    fontFamily: Fonts.primaryFont
-  },
-  divider: {
-    marginVertical: 20,
-    marginVertical: 60
-  },
-  textGeral: {
-    color: Colors.primaryButtonColor,
-    fontFamily: Fonts.primaryFont
-  }
-});

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, Icon } from 'react-native'
+import { View, TextInput, StyleSheet, Text } from 'react-native'
 import { IconButton } from 'react-native-paper';
 
 export default function InputText(props) {

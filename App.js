@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Cadastrar from './src/components/pages/cadastrar/Cadastrar';
@@ -25,11 +25,8 @@ export default function App() {
   }
 
   return (
-    <View style={{flex: 1}} onLayout={onLayoutRootView}>
-        <Login/>
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <Cadastrar />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-});
