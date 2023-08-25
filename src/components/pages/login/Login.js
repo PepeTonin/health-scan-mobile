@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-paper'
+import { Button, Text } from 'react-native-paper'
 import InputText from '../../shared/InputText';
 import Colors from '../../../css/default/Colors';
 import {
@@ -16,11 +16,26 @@ import {
   StyledButtonCard,
   StyledButtonContainer
 } from './style';
+import { validate } from '../../../validators/login/loginValidator';
 
 export default function Login() {
 
   const [login, setLogin] = useState("")
   const [senha, setSenha] = useState("")
+  const [valido, setValido] = useState({});
+
+  function logar(){
+    const usuario = {
+      login: login,
+      senha: senha
+    }
+
+    setValido(validate(usuario));
+
+    if(valido.isValido){
+      //loga
+    }
+  }
 
   return (
     <StyledContainer>
@@ -67,6 +82,7 @@ export default function Login() {
             title="Usuario"
             height={50}
             width={350}
+            isError={!valido.isValido && valido.campo == 'login'}
             placeholder="Usuario"
             onChangeText={setLogin}
             value={login}
@@ -75,19 +91,23 @@ export default function Login() {
             title="Senha"
             height={50}
             width={350}
+            isError={!valido.isValido && valido.campo == 'senha'}
             isPassword
             placeholder="Senha"
             inlineImageLeft='search_icon'
             onChangeText={setSenha}
             value={senha}
           />
+          { valido && !valido.isValido &&
+            <Text style={{color: Colors.error, marginLeft: 10}}>{valido.mensagem}</Text>
+          }
         </StyledInputContainer>
         <StyledButtonContainer>
           <Button
             textColor={Colors.primaryFontColorButton}
             buttonColor={Colors.primaryButtonColor}
             mode="elevated"
-            onPress={() => console.log('Pressed')}>
+            onPress={() => logar()}>
             LOGIN
           </Button>
           <Button

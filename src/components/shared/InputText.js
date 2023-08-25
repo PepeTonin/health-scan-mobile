@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native'
 import { IconButton } from 'react-native-paper';
+import Colors from '../../css/default/Colors';
 
 export default function InputText(props) {
   const [isPassword, setIsPassword] = useState(true);
@@ -37,6 +38,8 @@ const styles = (props) => StyleSheet.create({
     color: "white"
   },
   input: {
+    borderColor: Colors.error,
+    borderBottomWidth: props.isError ? 5 : 0,
     backgroundColor: "white",
     width: props.width,
     height: props.height,
