@@ -39,7 +39,10 @@ const styles = (props) => StyleSheet.create({
   },
   input: {
     borderColor: Colors.error,
-    borderBottomWidth: props.isError ? 5 : 0,
+    borderBottomWidth: props.isError ? 2 : 0,
+    borderTopWidth: props.isError ? 2 : 0,
+    borderLeftWidth: props.isError ? 2 : 0,
+    borderRightWidth: props.isError ? 2 : 0,
     backgroundColor: "white",
     width: props.width,
     height: props.height,
