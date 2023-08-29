@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Cadastrar from './src/components/pages/cadastrar/Cadastrar';
 import Login from './src/components/pages/login/Login';
+import Navigation from './navigation'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,7 +27,9 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Login />
+      <Cadastrar />
+      <Navigation />
     </View>
   );
+  
 }
