@@ -3,7 +3,8 @@ const ColorsWhite = {
    primaryButtonColor: '#2E6025',
    primaryFontColor: 'black',
    primaryFontColorButton: 'white',
-   white: 'white'
+   white: 'white',
+   error: '#F77272'
 }
 
 const ColorsBlack = {
@@ -11,7 +12,8 @@ const ColorsBlack = {
    primaryButtonColor: '#2E6025',
    primaryFontColor: 'white',
    primaryFontColorButton: 'white',
-   white: 'white'
+   white: 'white',
+   error: '#F77272'
 }
 
 const Colors = ColorsBlack

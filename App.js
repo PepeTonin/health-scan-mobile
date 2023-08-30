@@ -32,4 +32,8 @@ export default function App() {
     </View>
   );
   
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b72804bd2190a00f4a5569e262afc4d72e613fad
