@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import { View } from "react-native";
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as SplashScreen from "expo-splash-screen";
 
 import Home from "./src/components/pages/home/Home";
 import Scan from "./src/components/pages/scan/Scan";
@@ -34,15 +35,28 @@ export default function App() {
     return null;
   }
 
-  return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
+  const isLogged = false;
 
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Search" component={Search} />
-        <Tab.Screen name="Scan" component={Scan} />
-      </Tab.Navigator>
-    </View>
+  function loggedScreen() {
+    return (
+      <NavigationContainer>
+        <BottomTab.Navigator>
+          <BottomTab.Screen name="Home" component={Home} />
+          <BottomTab.Screen name="Search" component={Search} />
+          <BottomTab.Screen name="Scan" component={Scan} />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    );
+  }
+
+  return (
+    <>
+      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
+        <NavigationContainer>
+          <Stack.Screen>{isLogged ? <loggedScreen /> : <Login />}</Stack.Screen>
+        </NavigationContainer>
+      </View>
+    </>
   );
 }
