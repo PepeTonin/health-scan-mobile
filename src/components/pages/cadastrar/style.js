@@ -17,6 +17,7 @@ export const StyledTopContainer = styled.View`
 export const StyledContainerInterno = styled.View`
     margin-horizontal: 30px;
     justify-content: center;
+    margin-bottom: 30px;
     flex: 1px
 `
 
@@ -30,6 +31,13 @@ export const StyledTitle = styled(Text)`
 
 export const StyledButtonContainer = styled.View`
     margin-horizontal: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     margin-top: 30pxx;
+`
+
+export const StyledTextError = styled(Text)`
+    margin-left: 20px;
+    color: ${Colors.error};
+    margin-top: 10px;
+    margin-bottom: 20px;
 `
