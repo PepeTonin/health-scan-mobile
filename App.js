@@ -5,7 +5,8 @@ import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 
 import Colors from "./src/css/default/Colors";
-import Routes from "./src/routes/Routes";
+import StackLoginRouter from "./src/routes/StackLoginRouter";
+import { NavigationContainer } from "@react-navigation/native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,7 +32,9 @@ export default function App() {
     <>
       <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
-        <Routes />
+        <NavigationContainer>
+          <StackLoginRouter />
+        </NavigationContainer>
       </View>
     </>
   );

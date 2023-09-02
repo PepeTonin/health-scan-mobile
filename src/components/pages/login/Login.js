@@ -18,7 +18,7 @@ import {
 } from './style';
 import { validate } from '../../../validators/login/loginValidator';
 
-export default function Login() {
+export default function Login({navigation}) {
 
   const [login, setLogin] = useState("")
   const [senha, setSenha] = useState("")
@@ -62,7 +62,7 @@ export default function Login() {
             <StyledButtonCard
               buttonColor={Colors.white}
               mode="elevated"
-              onPress={() => console.log('Pressed')}>
+              onPress={() => navigation.navigate('Cadastrar')}>
               <StyledTextGeral
                 variant='labelLarge'>
                 CADASTRE-SE
