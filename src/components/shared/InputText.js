@@ -38,11 +38,11 @@ const styles = (props) => StyleSheet.create({
     color: "white"
   },
   input: {
-    borderColor: Colors.error,
-    borderBottomWidth: props.isError ? 2 : 0,
-    borderTopWidth: props.isError ? 2 : 0,
-    borderLeftWidth: props.isError ? 2 : 0,
-    borderRightWidth: props.isError ? 2 : 0,
+    borderColor: props.isError ? Colors.error : Colors.primaryFontColor,
+    borderBottomWidth: props.isError ? 2 : 1,
+    borderTopWidth: props.isError ? 2 : 1,
+    borderLeftWidth: props.isError ? 2 : 1,
+    borderRightWidth: props.isError ? 2 : 1,
     backgroundColor: "white",
     width: props.width,
     height: props.height,
