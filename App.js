@@ -1,6 +1,12 @@
 import { useCallback } from "react";
 import { View } from "react-native";
 import { useFonts } from "expo-font";
+<<<<<<< Updated upstream
+=======
+import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+>>>>>>> Stashed changes
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -32,6 +38,7 @@ export default function App() {
     return null;
   }
 
+<<<<<<< Updated upstream
   const isLogged = false;
 
   return (
@@ -41,5 +48,19 @@ export default function App() {
         <Routes />
       </View>
     </>
+=======
+  return (
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
+      <NavigationContainer>
+
+        <BottomTab.Navigator>
+          <BottomTab.Screen name="Home" component={Home} />
+          <BottomTab.Screen name="Search" component={Search} />
+          <BottomTab.Screen name="Scan" component={Scan} />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    </View>
+>>>>>>> Stashed changes
   );
 }
