@@ -14,8 +14,6 @@ import Routes from "./src/routes/Routes";
 
 SplashScreen.preventAutoHideAsync();
 
-
-
 export default function App() {
   //carregar as fontes
   const [fontsLoaded] = useFonts({
