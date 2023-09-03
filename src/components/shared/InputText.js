@@ -12,6 +12,7 @@ export default function InputText(props) {
 
       <TextInput
         secureTextEntry={props.isPassword && isPassword}
+        editable={!props.disable}
         style={styles(props).input}
         {...props} />
 
@@ -35,15 +36,15 @@ const styles = (props) => StyleSheet.create({
   text: {
     marginLeft: 10,
     marginBottom: 2,
-    color: "white"
+    color: Colors.white
   },
   input: {
     borderColor: props.isError ? Colors.error : Colors.primaryFontColor,
-    borderBottomWidth: props.isError ? 2 : 1,
-    borderTopWidth: props.isError ? 2 : 1,
-    borderLeftWidth: props.isError ? 2 : 1,
-    borderRightWidth: props.isError ? 2 : 1,
-    backgroundColor: "white",
+    borderBottomWidth: props.isError ? 2 : 0,
+    borderTopWidth: props.isError ? 2 : 0,
+    borderLeftWidth: props.isError ? 2 : 0,
+    borderRightWidth: props.isError ? 2 : 0,
+    backgroundColor: props.disable ? Colors.disable : Colors.white,
     width: props.width,
     height: props.height,
     borderRadius: 50,

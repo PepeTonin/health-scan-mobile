@@ -19,6 +19,8 @@ export function put(url, data) {
 }
 
 export function post(url, data) {
+  console.log(data)
+  console.log(`${baseUrl}${url}` )
   return axios({
     method: "POST",
     data: data,

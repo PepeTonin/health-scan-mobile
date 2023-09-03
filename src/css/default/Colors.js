@@ -6,6 +6,7 @@ const ColorsLightMode = {
   primaryFontColorButton: "white",
   white: "white",
   error: "#F77272",
+  disable: "#d3d3d3"
 };
 
 const ColorDarkMode = {
@@ -16,6 +17,7 @@ const ColorDarkMode = {
   primaryFontColorButton: "white",
   white: "white",
   error: "#F77272",
+  disable: "#d3d3d3"
 };
 
 const Colors = ColorDarkMode;
