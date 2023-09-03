@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { View } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -8,6 +8,8 @@ import Colors from "./src/css/default/Colors";
 import StackLoginRouter from "./src/routes/StackLoginRouter";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDatabase } from "./src/database/default/database";
+import AuthProvider from "./src/contexts/auth";
+import BottomTabRouter from "./src/routes/BottomTabRouter";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,14 +32,14 @@ export default function App() {
     return null;
   }
 
-  const isLogged = false;
-
   return (
     <>
       <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
         <NavigationContainer>
-          <StackLoginRouter />
+          <AuthProvider>
+             <StackLoginRouter/>
+          </AuthProvider>
         </NavigationContainer>
       </View>
     </>

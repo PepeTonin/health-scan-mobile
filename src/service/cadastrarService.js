@@ -7,3 +7,7 @@ export function cadastrarUsuario(data){
 export function validarCodigoEmail(data){
     return post("usuario/validar-codigo", data);
 }
+
+export function logar(data){
+    return post("usuario/logar", data);
+}

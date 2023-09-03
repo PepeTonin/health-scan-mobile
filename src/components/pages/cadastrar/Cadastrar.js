@@ -40,8 +40,7 @@ export default function Cadastrar({ navigation }) {
 
     const valid = await validate(usuario);
     setValidator(valid);
-
-    if (validator.isValido) {
+    if (valid.isValido) {
       enviarCadastro(usuario);
     }
   }
