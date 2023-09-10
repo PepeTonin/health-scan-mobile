@@ -30,7 +30,7 @@ export default function InputText(props) {
 const styles = (props) => StyleSheet.create({
   icon: {
     position: 'absolute',
-    marginTop: (props.height / 2) + 3,
+    marginTop: (props.height / 2),
     left: props.width - 60
   },
   text: {

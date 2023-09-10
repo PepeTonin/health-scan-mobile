@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Alert, View } from "react-native";
 import { Button, Text, PaperProvider } from "react-native-paper";
 import InputText from "../../shared/InputText";
@@ -17,9 +17,19 @@ import {
   StyledButtonContainer,
 } from "./style";
 import { validate } from "../../../validators/login/loginValidator";
-import { logar, validarCodigoEmail } from "../../../service/cadastrarService";
+import {
+  logar,
+  logarToken,
+  validarCodigoEmail,
+} from "../../../service/cadastrarService";
 import ValidarCodigoModal from "../cadastrar/modal/ValidarCodigoModal";
 import { AuthContext } from "../../../contexts/auth";
+import {
+  buscarUsuario,
+  inserirUsuario,
+  removerUsuario,
+} from "../../../database/usuarioPercistence";
+import { sha256 } from "../../../utils/cripto";
 
 export default function Login({ navigation }) {
   const [login, setLogin] = useState("");
@@ -30,7 +40,22 @@ export default function Login({ navigation }) {
   const [visible, setVisible] = useState(false);
   const [messageModal, setMessageModal] = useState("");
 
-  const { isLogged, usuario, setUsuario, setIsLogged } = useContext(AuthContext);
+  const { isLogged, usuario, setUsuario, setIsLogged } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    buscarUsuario().then((res) => {
+      if (res.length > 0) {
+        const usuario = { login: res[0].LOGIN, token: res[0].TOKEN };
+        logarToken(usuario).then((res) => {
+          const dados = res.data;
+          if (dados.code == 200) {
+            gravarUsuario(dados.result);
+          }
+        });
+      }
+    });
+  }, [1]);
 
   function fazerLogin() {
     const usuario = {
@@ -42,20 +67,22 @@ export default function Login({ navigation }) {
     setValido(valid);
 
     if (valid.isValido) {
-      logar(usuario).then((res) => {
-        const dados = res.data;
-        if (dados.message == "usuario-nao-validado") {
-          setEmail(dados.result.email);
-          setVisible(true);
-        } else if (dados.message == "usuario-senha-nao-encontrado"){
-          setValido({        
-            isValido: false,
-            mensagem: "Login ou Senha incorreto(s)"
-          });
-        } else if (dados.code == 200) {
-          setUsuario(dados.result)
-          setIsLogged(true);
-        }
+      sha256(usuario.senha).then((res) => {
+        usuario.senha = res;
+        logar(usuario).then((res) => {
+          const dados = res.data;
+          if (dados.message == "usuario-nao-validado" || dados.message == "codigo-expirado") {
+            setEmail(dados.result.email);
+            setVisible(true);
+          } else if (dados.message == "usuario-senha-nao-encontrado") {
+            setValido({
+              isValido: false,
+              mensagem: "Login ou Senha incorreto(s)",
+            });
+          } else if (dados.code == 200) {
+            gravarUsuario(dados.result);
+          }
+        });
       });
     }
   }
@@ -70,9 +97,22 @@ export default function Login({ navigation }) {
           "Validação",
           "Email validado com sucesso, entre agora usando seu login e senha"
         );
+      } else if (dados.message == "codigo-expirado") {
+        setMessageModal("Codigo expirado");
       } else {
         setMessageModal("Codigo digitado não esta correto");
       }
+    });
+  }
+
+  function gravarUsuario(usr) {
+    setUsuario(usr);
+    removerUsuario().then(() => {
+      inserirUsuario([usr.id, usr.nome, usr.email, usr.login, usr.token]).then(
+        () => {
+          setIsLogged(true);
+        }
+      );
     });
   }
 
@@ -105,7 +145,9 @@ export default function Login({ navigation }) {
               <StyledButtonCard
                 buttonColor={Colors.white}
                 mode="elevated"
-                onPress={() => navigation.navigate("Cadastrar")}
+                onPress={() =>
+                  navigation.navigate("Cadastrar", { isNovoUsuario: true })
+                }
               >
                 <StyledTextGeral variant="labelLarge">
                   CADASTRE-SE
@@ -121,7 +163,7 @@ export default function Login({ navigation }) {
             <InputText
               title="Usuario"
               height={50}
-              width={350}
+              width={Platform.OS === 'ios' ? 310 : 350}
               isError={!valido.isValido && valido.campo == "login"}
               placeholder="Usuario"
               onChangeText={setLogin}
@@ -130,7 +172,7 @@ export default function Login({ navigation }) {
             <InputText
               title="Senha"
               height={50}
-              width={350}
+              width={Platform.OS === 'ios' ? 310 : 350}
               isError={!valido.isValido && valido.campo == "senha"}
               isPassword
               placeholder="Senha"
@@ -153,7 +195,12 @@ export default function Login({ navigation }) {
             >
               LOGIN
             </Button>
-            <Button mode="text" onPress={() => console.log("Pressed")}>
+            <Button
+              mode="text"
+              onPress={() =>
+                navigation.navigate("Cadastrar", { isNovoUsuario: false })
+              }
+            >
               <StyledTitle variant="labelMedium">
                 Esqueceu sua conta?
               </StyledTitle>

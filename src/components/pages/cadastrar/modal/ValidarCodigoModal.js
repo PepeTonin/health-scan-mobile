@@ -1,10 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import {
-  Modal,
-  Portal,
-  IconButton,
-} from "react-native-paper";
+import { Modal, Portal, IconButton } from "react-native-paper";
 import {
   StyledTitleModal,
   StyledModalContainer,
@@ -12,24 +8,34 @@ import {
   StyledTopContainerModal,
   StyledButtonModal,
   StyledTextErrorModal,
+  StyledBottomContainerModal,
 } from "../style";
 import Colors from "../../../../css/default/Colors";
 import InputText from "../../../shared/InputText";
+import CountDown from "../../../shared/CountDown";
+import { reenviarEmailValidacao } from "../../../../service/cadastrarService";
 
 export default function ValidarCodigoModal(props) {
   const [codigo, setCodigo] = React.useState("");
+  const [isNovoCodigo, setIsNovoCodigo] = React.useState(false);
+
+  function onFinishCountDown() {
+    setIsNovoCodigo(true);
+  }
+
+  function enviarCodigoNovamente(){
+    setIsNovoCodigo(false);
+    reenviarEmailValidacao({email: props.email})
+  }
 
   return (
     <Portal>
-      <Modal visible={props.visible}>
+      <Modal
+        visible={props.visible}
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.9)" }}
+      >
         <StyledModalContainer>
           <StyledTopContainerModal>
-            <IconButton
-              icon="chevron-left"
-              iconColor={Colors.primaryFontColor}
-              size={50}
-              onPress={() => props.setVisible(false)}
-            />
             <StyledTitleModal variant="headlineLarge">
               Código de verificação
             </StyledTitleModal>
@@ -51,15 +57,25 @@ export default function ValidarCodigoModal(props) {
           <StyledTextErrorModal variant="labelLarge">
             {props.message}
           </StyledTextErrorModal>
-          <StyledTopContainerModal>
-            <View>
-              <StyledTitleModal variant="labelLarge">
-                {"Enviar o codigo novamente"}
-              </StyledTitleModal>
-              <StyledTitleModal variant="labelLarge">
-                {"2 segundos"}
-              </StyledTitleModal>
-            </View>
+          <StyledBottomContainerModal>
+            {!isNovoCodigo ? (
+              <View style={{ flexDirection: "row" }}>
+                <StyledTitleModal variant="labelLarge">
+                  {"Enviar o codigo novamente em: "}
+                </StyledTitleModal>
+                <CountDown onFinish={onFinishCountDown} initialTime={60} />
+              </View>
+            ) : (
+              <View style={{ marginRight: 40 }}>
+                <StyledTitleModal
+                  variant="labelLarge"
+                  onPress={enviarCodigoNovamente}
+                  style={{ color: Colors.link }}
+                >
+                  {"Enviar o codigo novamente"}
+                </StyledTitleModal>
+              </View>
+            )}
             <StyledButtonModal
               buttonColor={Colors.primaryButtonColor}
               mode="elevated"
@@ -69,7 +85,7 @@ export default function ValidarCodigoModal(props) {
             >
               <StyledTitleModal variant="labelLarge">Validar</StyledTitleModal>
             </StyledButtonModal>
-          </StyledTopContainerModal>
+          </StyledBottomContainerModal>
         </StyledModalContainer>
       </Modal>
     </Portal>

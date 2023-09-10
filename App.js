@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useEffect } from "react";
 import { View } from "react-native";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -9,13 +9,15 @@ import StackLoginRouter from "./src/routes/StackLoginRouter";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDatabase } from "./src/database/default/database";
 import AuthProvider from "./src/contexts/auth";
-import BottomTabRouter from "./src/routes/BottomTabRouter";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  //cria o banco local
-  createDatabase();
+
+  useEffect(()=>{
+    //cria o banco local
+    createDatabase();
+  }, [1])
 
   //carregar as fontes
   const [fontsLoaded] = useFonts({

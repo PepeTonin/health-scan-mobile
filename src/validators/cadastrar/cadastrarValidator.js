@@ -29,7 +29,17 @@ export function validate(obj) {
 
     return valido;
   }
-  
+
+  return validarSenha(obj);
+}
+
+export function validarSenha(obj) {
+  let valido = {
+    isValido: true,
+    mensagem: "",
+    campo: null,
+  };
+
   if (!obj.senha || obj.senha == "") {
     valido.isValido = false;
     valido.mensagem = "O campo de senha precisa ser preenchido";

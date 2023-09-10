@@ -23,8 +23,7 @@ export const StyledInputContainer = styled.View`
 `
 
 export const StyledDividerEspacado = styled(Divider)`
-    margin-vertical: 20px;
-    margin-vertical: 60px;
+    margin-vertical: ${Platform.OS === 'ios' ? '15px' : '60px'};
 `
 
 export const StyledTextoBranco = styled(Text)`
