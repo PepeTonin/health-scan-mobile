@@ -30,10 +30,12 @@ export default function RecuperarContaModal(props) {
     props
       .enviarEmail(usuario)
       .then((res) => {
+        console.log(res.data.message)
         if (res.data.code == 200) {
           props.setUsuario({ email: email });
           props.setIsNext(true);
         } else if (res.data.message == "email-nao-existe") {
+          console.log("ENTROU")
           setMessage("Email não cadastrado");
         }
       })
@@ -41,7 +43,6 @@ export default function RecuperarContaModal(props) {
         setMessage("Não foi possivél enviar o email");
       })
       .finally((r) => {
-        setMessage(null);
         setIsDisabled(false);
       });
   }
