@@ -11,7 +11,7 @@ import {
 } from "../style";
 import Colors from "../../../../css/default/Colors";
 import InputText from "../../../shared/InputText";
-import { validarCodigoEmail } from "../../../../service/cadastrarService";
+import { validarCodigoEmail } from "../../../../service/usuarioService";
 
 export default function ValidarRecuperarContaModal(props) {
   const [codigo, setCodigo] = React.useState("");

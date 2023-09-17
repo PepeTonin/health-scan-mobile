@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native'
 import { IconButton } from 'react-native-paper';
 import Colors from '../../css/default/Colors';
+import Fonts from '../../css/default/Fonts';
 
 export default function InputText(props) {
   const [isPassword, setIsPassword] = useState(true);
@@ -36,6 +37,7 @@ const styles = (props) => StyleSheet.create({
   text: {
     marginLeft: 10,
     marginBottom: 2,
+    fontFamily: Fonts.primaryFont,
     color: Colors.white
   },
   input: {

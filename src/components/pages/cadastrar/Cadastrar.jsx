@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, IconButton, Text, PaperProvider } from "react-native-paper";
+import { Button, IconButton, PaperProvider } from "react-native-paper";
 import InputText from "../../shared/InputText";
 import Colors from "../../../css/default/Colors";
 import {
@@ -19,7 +19,7 @@ import {
   validarCodigoEmail,
   enviarEmailRecuperacao,
   cadastrarNovaSenha,
-} from "../../../service/cadastrarService";
+} from "../../../service/usuarioService";
 import ValidarCodigoModal from "./modal/ValidarCodigoModal";
 import { Alert } from "react-native";
 import RecuperarContaModal from "./modal/RecuperarContaModal";
