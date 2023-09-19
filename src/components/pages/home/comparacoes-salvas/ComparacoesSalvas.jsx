@@ -8,7 +8,7 @@ import {
 } from "./style";
 
 export default function ComparacoesSalvas() {
-  const [comparacoesSalvas, setComparacoesSalvas] = useState([]);
+  const [comparacoesSalvas, setComparacoesSalvas] = useState([{},{},{}]);
 
   return (
     <StyledScrollView>

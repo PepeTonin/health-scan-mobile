@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import styled from "styled-components/native";
-import { ScrollView, Text, View, Image } from "react-native";
 import Fonts from "../../../../css/default/Fonts";
 import Colors from "../../../../css/default/Colors";
 

@@ -8,7 +8,8 @@ import { buscarUltimosProdutos } from "../../../service/produtoPesquisadoService
 import { StyledContainer, StyledSubtitle, StyledTitle } from "./style";
 
 export default function Home() {
-  const { isLogged, usuario, setUsuario, setIsLogged } = useContext(AuthContext);
+  const { isLogged, usuario, setUsuario, setIsLogged } =
+    useContext(AuthContext);
 
   const [produtosPesquisados, setProdutosPesquisados] = useState([]);
 
@@ -17,19 +18,20 @@ export default function Home() {
   }, [1]);
 
   function buscarProdutosPesquisados() {
-    buscarUltimosProdutos(usuario.id)
-      .then((val) => {
-        setProdutosPesquisados(val.data.result.content);
-      });
+    buscarUltimosProdutos(usuario.id).then((val) => {
+      setProdutosPesquisados(val.data.result.content);
+    });
   }
 
   return (
     <StyledContainer>
-      <StyledTitle>Ultimos produtos pesquisados</StyledTitle>
-      <ProdutosPesquisados produtos={produtosPesquisados} />
+      <View>
+        <StyledTitle>Ultimos produtos pesquisados</StyledTitle>
+        <ProdutosPesquisados produtos={produtosPesquisados} />
+      </View>
       <View>
         <StyledSubtitle>Suas comparações salvas</StyledSubtitle>
-        <InputText title={"Buscar"}/>
+        <InputText title={"Buscar"} />
         <ComparacoesSalvas />
       </View>
     </StyledContainer>

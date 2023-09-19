@@ -8,6 +8,10 @@ const ColorsLightMode = {
   error: "#F77272",
   disable: "#A3A3A3",
   link: "#0094FF",
+  whiteLight: "#F4F4F4",
+  primaryColorLight: "#86B474",
+  primaryColorDefault: "#5A8A4C"
+
 };
 
 const ColorDarkMode = {
@@ -20,6 +24,9 @@ const ColorDarkMode = {
   error: "#F77272",
   disable: "#A3A3A3",
   link: "#0094FF",
+  whiteLight: "#F4F4F4",
+  primaryColorLight: "#86B474",
+  primaryColorDefault: "#5A8A4C"
 };
 
 const Colors = ColorDarkMode;
