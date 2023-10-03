@@ -36,7 +36,7 @@ export default function BottomTabRouter() {
             <MaterialCommunityIcons
               name="file-find-outline"
               size={24}
-              color={focused ? Colors.primaryButtonColor : Colors.white}
+              color={focused ? Colors.primaryColorLight : Colors.white}
             />
           );
         }}
@@ -50,7 +50,7 @@ export default function BottomTabRouter() {
               <Octicons
                 name="home"
                 size={24}
-                color={focused ? Colors.primaryButtonColor : Colors.white}
+                color={focused ? Colors.primaryColorLight : Colors.white}
               />
             );
           },
@@ -65,7 +65,7 @@ export default function BottomTabRouter() {
               <MaterialIcons
                 name="fullscreen"
                 size={24}
-                color={focused ? Colors.primaryButtonColor : Colors.white}
+                color={focused ? Colors.primaryColorLight : Colors.white}
               />
             );
           },
