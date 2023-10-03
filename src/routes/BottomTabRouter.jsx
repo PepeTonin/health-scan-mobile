@@ -6,7 +6,7 @@ import Colors from "../css/default/Colors";
 import { Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -33,8 +33,8 @@ export default function BottomTabRouter() {
         component={Search}
         options={({ focused }) => {
           return (
-            <MaterialCommunityIcons
-              name="file-find-outline"
+            <Ionicons
+              name="search"
               size={24}
               color={focused ? Colors.primaryColorLight : Colors.white}
             />
