@@ -4,6 +4,9 @@ import Search from "../components/pages/search/Search";
 import Scan from "../components/pages/scan/Scan";
 import Colors from "../css/default/Colors";
 import { Image } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -20,14 +23,54 @@ export default function BottomTabRouter() {
         ),
         headerStyle: { backgroundColor: Colors.backgroundColor },
         headerTitleStyle: { color: Colors.primaryFontColor },
-        title: '',
+        title: "",
         tabBarOptions: { showIcon: true },
         tabBarStyle: { backgroundColor: Colors.backgroundColor },
       }}
     >
-      <BottomTab.Screen name="Search" component={Search} />
-      <BottomTab.Screen name="Home" component={Home} />
-      <BottomTab.Screen name="Scan" component={Scan} />
+      <BottomTab.Screen
+        name="Search"
+        component={Search}
+        options={({ focused }) => {
+          return (
+            <MaterialCommunityIcons
+              name="file-find-outline"
+              size={24}
+              color={focused ? Colors.primaryButtonColor : Colors.white}
+            />
+          );
+        }}
+      />
+      <BottomTab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Octicons
+                name="home"
+                size={24}
+                color={focused ? Colors.primaryButtonColor : Colors.white}
+              />
+            );
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="Scan"
+        component={Scan}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <MaterialIcons
+                name="fullscreen"
+                size={24}
+                color={focused ? Colors.primaryButtonColor : Colors.white}
+              />
+            );
+          },
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
