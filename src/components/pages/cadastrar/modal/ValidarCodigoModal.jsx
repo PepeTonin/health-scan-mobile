@@ -13,7 +13,7 @@ import {
 import Colors from "../../../../css/default/Colors";
 import InputText from "../../../shared/InputText";
 import CountDown from "../../../shared/CountDown";
-import { reenviarEmailValidacao } from "../../../../service/cadastrarService";
+import { reenviarEmailValidacao } from "../../../../service/usuarioService";
 
 export default function ValidarCodigoModal(props) {
   const [codigo, setCodigo] = React.useState("");

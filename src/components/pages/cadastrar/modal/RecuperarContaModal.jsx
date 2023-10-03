@@ -41,7 +41,6 @@ export default function RecuperarContaModal(props) {
         setMessage("Não foi possivél enviar o email");
       })
       .finally((r) => {
-        setMessage(null);
         setIsDisabled(false);
       });
   }

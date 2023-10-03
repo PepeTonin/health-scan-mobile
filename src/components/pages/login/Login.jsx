@@ -21,7 +21,7 @@ import {
   logar,
   logarToken,
   validarCodigoEmail,
-} from "../../../service/cadastrarService";
+} from "../../../service/usuarioService";
 import ValidarCodigoModal from "../cadastrar/modal/ValidarCodigoModal";
 import { AuthContext } from "../../../contexts/auth";
 import {
