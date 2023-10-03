@@ -57,5 +57,5 @@ export const StyledButtonCard = styled(Button)`
 `
 
 export const StyledButtonContainer = styled.View`
-    marginTop: 30px;
+    margin-top: 30px;
 `
