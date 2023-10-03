@@ -1,10 +1,14 @@
 import { Text, View } from "react-native";
 import BackButton from "../../shared/BackButton/BackButton";
 import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
+import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
 
-export default function Comparacao({navigation}) {
+export default function Comparacao({ navigation }) {
   function backButtonHandler() {
-    navigation.goBack()
+    navigation.goBack();
+  }
+  function salvarHandler() {
+    return;
   }
   return (
     <View>
@@ -12,7 +16,7 @@ export default function Comparacao({navigation}) {
         <BackButton onPress={backButtonHandler} />
       </View>
       <View>
-        <BotaoSalvar onPress={} />
+        <BotaoSalvar onPress={salvarHandler} />
       </View>
     </View>
   );
