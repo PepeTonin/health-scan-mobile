@@ -31,14 +31,16 @@ export default function BottomTabRouter() {
       <BottomTab.Screen
         name="Search"
         component={Search}
-        options={({ focused }) => {
-          return (
-            <Ionicons
-              name="search"
-              size={24}
-              color={focused ? Colors.primaryColorLight : Colors.white}
-            />
-          );
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name="search"
+                size={24}
+                color={focused ? Colors.primaryColorLight : Colors.white}
+              />
+            );
+          },
         }}
       />
       <BottomTab.Screen
