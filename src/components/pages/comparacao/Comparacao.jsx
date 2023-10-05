@@ -21,6 +21,10 @@ export default function Comparacao({ navigation }) {
     navigation.navigate("Search");
   }
 
+  function informacoesHandler(){
+    navigation.navigate("Info")
+  }
+
   return (
     <View>
       <View>
@@ -32,6 +36,7 @@ export default function Comparacao({ navigation }) {
       <View>
         <PrimaryButton onPress={escanearHandler}>ESCANEAR</PrimaryButton>
         <PrimaryButton onPress={pesquisarHandler}>PESQUISAR</PrimaryButton>
+        <PrimaryButton onPress={informacoesHandler}>INFORMACOES DE UM ITEM</PrimaryButton>
       </View>
     </View>
   );
