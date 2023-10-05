@@ -8,7 +8,8 @@ import BottomTabRouter from "./BottomTabRouter";
 const Stack = createNativeStackNavigator();
 
 export default function StackLoginRouter() {
-  const { isLogged, usuario, setUsuario, setIsLogged } = useContext(AuthContext);
+  const { isLogged, usuario, setUsuario, setIsLogged } =
+    useContext(AuthContext);
 
   return (
     <>

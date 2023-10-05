@@ -13,11 +13,10 @@ import AuthProvider from "./src/contexts/auth";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
-  useEffect(()=>{
+  useEffect(() => {
     //cria o banco local
     createDatabase();
-  }, [1])
+  }, [1]);
 
   //carregar as fontes
   const [fontsLoaded] = useFonts({
@@ -40,7 +39,7 @@ export default function App() {
         <StatusBar style={Colors.type === "darkmode" ? "light" : "dark"} />
         <NavigationContainer>
           <AuthProvider>
-             <StackLoginRouter/>
+            <StackLoginRouter />
           </AuthProvider>
         </NavigationContainer>
       </View>

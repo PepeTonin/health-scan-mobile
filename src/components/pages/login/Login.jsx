@@ -30,6 +30,7 @@ import {
   removerUsuario,
 } from "../../../database/usuarioPercistence";
 import { sha256 } from "../../../utils/cripto";
+import PrimaryButton from "../../shared/PrimaryButton";
 
 export default function Login({ navigation }) {
   const [login, setLogin] = useState("");
@@ -71,7 +72,10 @@ export default function Login({ navigation }) {
         usuario.senha = res;
         logar(usuario).then((res) => {
           const dados = res.data;
-          if (dados.message == "usuario-nao-validado" || dados.message == "codigo-expirado") {
+          if (
+            dados.message == "usuario-nao-validado" ||
+            dados.message == "codigo-expirado"
+          ) {
             setEmail(dados.result.email);
             setVisible(true);
           } else if (dados.message == "usuario-senha-nao-encontrado") {
@@ -163,7 +167,7 @@ export default function Login({ navigation }) {
             <InputText
               title="Usuario"
               height={50}
-              width={Platform.OS === 'ios' ? 310 : 350}
+              width={Platform.OS === "ios" ? 310 : 350}
               isError={!valido.isValido && valido.campo == "login"}
               placeholder="Usuario"
               onChangeText={setLogin}
@@ -172,7 +176,7 @@ export default function Login({ navigation }) {
             <InputText
               title="Senha"
               height={50}
-              width={Platform.OS === 'ios' ? 310 : 350}
+              width={Platform.OS === "ios" ? 310 : 350}
               isError={!valido.isValido && valido.campo == "senha"}
               isPassword
               placeholder="Senha"
@@ -187,14 +191,7 @@ export default function Login({ navigation }) {
             )}
           </StyledInputContainer>
           <StyledButtonContainer>
-            <Button
-              textColor={Colors.primaryFontColorButton}
-              buttonColor={Colors.primaryButtonColor}
-              mode="elevated"
-              onPress={() => fazerLogin()}
-            >
-              LOGIN
-            </Button>
+            <PrimaryButton onPress={fazerLogin}>LOGIN</PrimaryButton>
             <Button
               mode="text"
               onPress={() =>

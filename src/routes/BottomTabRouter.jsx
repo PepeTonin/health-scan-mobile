@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import StackFlowPesquisarComparar from "./StackFlowPesquisarComparar";
 import Home from "../components/pages/home/Home";
 import Search from "../components/pages/search/Search";
 import Scan from "../components/pages/scan/Scan";
@@ -29,8 +30,8 @@ export default function BottomTabRouter() {
       }}
     >
       <BottomTab.Screen
-        name="Search"
-        component={Search}
+        name="PesquisarComparar"
+        component={StackFlowPesquisarComparar}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
