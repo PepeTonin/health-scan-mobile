@@ -5,7 +5,6 @@ import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
 import PrimaryButton from "../../shared/PrimaryButton";
 
 export default function Comparacao({ navigation }) {
-  
   function backButtonHandler() {
     navigation.goBack();
   }
@@ -13,13 +12,13 @@ export default function Comparacao({ navigation }) {
   function salvarHandler() {
     return;
   }
-  
+
   function escanearHandler() {
-    navigation.navigate("Search");
+    navigation.navigate("Scan");
   }
 
   function pesquisarHandler() {
-    navigation.navigate("Camera");
+    navigation.navigate("Search");
   }
 
   return (
