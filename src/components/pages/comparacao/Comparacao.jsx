@@ -1,16 +1,12 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import BackButton from "../../shared/BackButton/BackButton";
 import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
-import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
 import PrimaryButton from "../../shared/PrimaryButton";
+import { StyledContainer } from "./style";
 
 export default function Comparacao({ navigation }) {
   function backButtonHandler() {
     navigation.goBack();
-  }
-
-  function salvarHandler() {
-    return;
   }
 
   function escanearHandler() {
@@ -21,8 +17,8 @@ export default function Comparacao({ navigation }) {
     navigation.navigate("Search");
   }
 
-  function informacoesHandler(){
-    navigation.navigate("Info")
+  function informacoesHandler() {
+    navigation.navigate("Info");
   }
 
   return (
@@ -31,12 +27,11 @@ export default function Comparacao({ navigation }) {
         <BackButton onPress={backButtonHandler} />
       </View>
       <View>
-        <BotaoSalvar onPress={salvarHandler} />
-      </View>
-      <View>
         <PrimaryButton onPress={escanearHandler}>ESCANEAR</PrimaryButton>
         <PrimaryButton onPress={pesquisarHandler}>PESQUISAR</PrimaryButton>
-        <PrimaryButton onPress={informacoesHandler}>INFORMACOES DE UM ITEM</PrimaryButton>
+        <PrimaryButton onPress={informacoesHandler}>
+          INFORMACOES DE UM ITEM
+        </PrimaryButton>
       </View>
     </View>
   );
