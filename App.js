@@ -21,6 +21,7 @@ export default function App() {
   //carregar as fontes
   const [fontsLoaded] = useFonts({
     "Bebas-Neue": require("./assets/fonts/BebasNeue-Regular.ttf"),
+    "OpenSans-SemiBold": require("./assets/fonts/OpenSans-SemiBold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

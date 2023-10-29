@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import { View } from "react-native";
-import BackButton from "../../shared/BackButton/BackButton";
-import BotaoSalvar from "../../shared/BotaoSalvar/BotaoSalvar";
-import PrimaryButton from "../../shared/PrimaryButton";
-import { StyledContainer } from "./style";
 
-export default function Comparacao({ navigation }) {
+import BackButton from "../../shared/BackButton/BackButton";
+import PrimaryButton from "../../shared/PrimaryButton";
+import { styles } from "./style";
+import { produtos } from "../../../fakeData/fakeData";
+
+export default function Comparacao({ navigation, route }) {
+  const [produtosParaComparar, setProdutosParaComparar] = useState([]);
+
+  useEffect(() => {
+    route.params.map((item) => {
+      const produto = produtos.find((prod) => prod.id === item.id);
+      console.log(produto);
+      setProdutosParaComparar([...produtosParaComparar, produto]);
+    });
+  }, []);
+
   function backButtonHandler() {
     navigation.goBack();
   }
@@ -22,9 +34,10 @@ export default function Comparacao({ navigation }) {
   }
 
   return (
-    <View>
+    <View style={styles.rootContainer}>
       <View>
         <BackButton onPress={backButtonHandler} />
+        {/* botao salvar comapracao */}
       </View>
       <View>
         <PrimaryButton onPress={escanearHandler}>ESCANEAR</PrimaryButton>

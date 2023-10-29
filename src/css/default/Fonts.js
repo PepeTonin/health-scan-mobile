@@ -1,5 +1,6 @@
 const Fonts = {
-    primaryFont: 'Bebas-Neue'
+    primaryFont: 'Bebas-Neue',
+    secondaryFont: 'OpenSans-SemiBold'
 }
 
 export default Fonts

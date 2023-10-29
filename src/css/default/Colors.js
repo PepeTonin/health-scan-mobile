@@ -22,7 +22,7 @@ const ColorDarkMode = {
   primaryFontColorButton: "white",
   white: "white",
   error: "#F77272",
-  disable: "#A3A3A3",
+  gray_200: "#A3A3A3",
   link: "#0094FF",
   whiteLight: "#F4F4F4",
   primaryColorLight: "#86B474",
