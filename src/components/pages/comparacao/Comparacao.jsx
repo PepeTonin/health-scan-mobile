@@ -12,7 +12,6 @@ export default function Comparacao({ navigation, route }) {
   useEffect(() => {
     route.params.map((item) => {
       const produto = produtos.find((prod) => prod.id === item.id);
-      console.log(produto);
       setProdutosParaComparar([...produtosParaComparar, produto]);
     });
   }, []);

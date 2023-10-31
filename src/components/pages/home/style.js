@@ -17,7 +17,7 @@ export const StyledTitle = styled.Text`
 export const StyledSubtitle = styled.Text`
   color: white;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
   font-size: 20px;
   font-family: ${Fonts.primaryFont};
 `;
