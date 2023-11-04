@@ -19,9 +19,11 @@ export default function CardProduto({
       >
         <Image
           style={styles.image}
-          source={{
-            uri: urlImagemDoProduto,
-          }}
+          source={
+            urlImagemDoProduto 
+            ? {uri: urlImagemDoProduto}
+            : require("../../../../assets/no-image.png")
+          }
         />
         <View style={styles.textContainer}>
           <Text style={styles.nomeProduto}>{nomeDoProduto}</Text>

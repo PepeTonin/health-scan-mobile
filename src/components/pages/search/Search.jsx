@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, FlatList, Text, View } from "react-native";
+import { Alert, FlatList, Image, Text, View } from "react-native";
 
 import { styles } from "./style";
 import PrimaryButton from "../../shared/PrimaryButton";
@@ -8,11 +8,20 @@ import CardProdutoSelecionado from "./card-produto-selecionado/CardProdutoSeleci
 import CardProduto from "./card-produto/CardProduto";
 
 import { filtrarProdutos } from "../../../service/produtoservice";
+import { useDebounce } from "../../../utils/util";
 
 export default function Search({ navigation }) {
   const [inputText, setInputText] = useState("");
   const [produtosMostrados, setProdutosMostrados] = useState([]);
   const [produtosParaComparacao, setProdutosParaComparacao] = useState([]);
+  const searchQuery = useDebounce(inputText, 300)
+
+  useEffect(() => {
+    const query = inputText.toLowerCase();
+    filtrarProdutos(query).then((result) => {
+      setProdutosMostrados(result.data.result.content);
+    });
+  }, [searchQuery])
 
   function compararHandler() {
     if (produtosParaComparacao.length < 2) {
@@ -31,19 +40,6 @@ export default function Search({ navigation }) {
 
   function infoProdutoHandler(idDoProduto) {
     navigation.navigate("Info", idDoProduto);
-  }
-
-  function onChangeTextHandler(inputText) {
-    setInputText(inputText);
-    if (inputText.length === 0) {
-      setProdutosMostrados([]);
-    } else {
-      
-      filtrarProdutos(inputText.toLowerCase())
-      .then((result=>{
-        setProdutosMostrados(result.data.result.content)
-      }))
-    }
   }
 
   function adicionarProdutoComparacao(idDoProduto, nomeDoProduto) {
@@ -67,7 +63,7 @@ export default function Search({ navigation }) {
     <View style={styles.rootContainer}>
       <InputText
         value={inputText}
-        onChangeText={onChangeTextHandler}
+        onChangeText={setInputText}
         title={"PESQUISAR"}
       />
 
@@ -91,21 +87,23 @@ export default function Search({ navigation }) {
       </View>
 
       <View style={styles.cardsProdutosContainer}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={produtosMostrados}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <CardProduto
-              idDoProduto={item.id}
-              urlImagemDoProduto={item.image}
-              nomeDoProduto={item.nome}
-              descricaoDoProduto={item.descricao}
-              tratarCliqueBotao={adicionarProdutoComparacao}
-              tratarCliqueCard={infoProdutoHandler}
-            />
-          )}
-        />
+        {!produtosMostrados || produtosMostrados.length == 0
+          ? <Image source={require("../../../assets/no-data.png")} style={{ width: 200, height: 200, alignSelf: 'center' }} />
+          : <FlatList
+            showsVerticalScrollIndicator={false}
+            data={produtosMostrados}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <CardProduto
+                idDoProduto={item.id}
+                urlImagemDoProduto={item.image}
+                nomeDoProduto={item.nome}
+                descricaoDoProduto={item.descricao}
+                tratarCliqueBotao={adicionarProdutoComparacao}
+                tratarCliqueCard={infoProdutoHandler}
+              />
+            )}
+          />}
       </View>
 
       <PrimaryButton onPress={compararHandler}>COMPARAR</PrimaryButton>
