@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./style";
 
 export default function CardProduto({
-  idDoProduto,
+  codBarra,
   urlImagemDoProduto,
   nomeDoProduto,
   descricaoDoProduto,
@@ -15,14 +15,14 @@ export default function CardProduto({
     <View style={styles.container}>
       <Pressable
         style={styles.pressableCardContainer}
-        onPress={() => tratarCliqueCard(idDoProduto)}
+        onPress={() => tratarCliqueCard(codBarra)}
       >
         <Image
           style={styles.image}
           source={
-            urlImagemDoProduto 
-            ? {uri: urlImagemDoProduto}
-            : require("../../../../assets/no-image.png")
+            urlImagemDoProduto
+              ? { uri: urlImagemDoProduto }
+              : require("../../../../assets/no-image.png")
           }
         />
         <View style={styles.textContainer}>
@@ -35,7 +35,7 @@ export default function CardProduto({
       <Pressable
         style={styles.iconContainer}
         hitSlop={20}
-        onPress={() => tratarCliqueBotao(idDoProduto, nomeDoProduto)}
+        onPress={() => tratarCliqueBotao(codBarra, nomeDoProduto)}
       >
         <AntDesign style={styles.icon} name="plus" size={32} color="black" />
       </Pressable>

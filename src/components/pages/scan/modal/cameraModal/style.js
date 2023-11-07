@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../../css/default/Colors";
-import Fonts from "../../../css/default/Fonts";
+import Colors from "../../../../../css/default/Colors";
+import Fonts from "../../../../../css/default/Fonts";
 
 export const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 300
+  },
   rootContainer: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
-    paddingTop:50,
     padding: 20,
   },
   header: {
@@ -62,8 +64,9 @@ export const styles = StyleSheet.create({
   },
   titulo: {
     color: Colors.white,
+    alignSelf: 'center',
     fontFamily: Fonts.primaryFont,
-    fontSize: 24,
+    fontSize: 18,
   },
   textoDestaque: {
     color: Colors.gray_200,

@@ -1,4 +1,4 @@
-import { post } from "./default/conector";
+import { post } from "../default/conector";
 
 export function cadastrarUsuario(data){
     return post("usuario/cadastrar-usuario", data);

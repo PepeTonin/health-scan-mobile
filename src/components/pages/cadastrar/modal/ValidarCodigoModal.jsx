@@ -11,9 +11,9 @@ import {
   StyledBottomContainerModal,
 } from "../style";
 import Colors from "../../../../css/default/Colors";
-import InputText from "../../../shared/InputText";
-import CountDown from "../../../shared/CountDown";
-import { reenviarEmailValidacao } from "../../../../service/usuarioService";
+import InputText from "../../../shared/InputText/InputText";
+import CountDown from "../../../shared/CountDown/CountDown";
+import { reenviarEmailValidacao } from "../../../../service/server/usuarioService";
 
 export default function ValidarCodigoModal(props) {
   const [codigo, setCodigo] = React.useState("");

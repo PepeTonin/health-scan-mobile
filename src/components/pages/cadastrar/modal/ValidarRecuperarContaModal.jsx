@@ -10,8 +10,8 @@ import {
   StyledButtonModalRecuperar,
 } from "../style";
 import Colors from "../../../../css/default/Colors";
-import InputText from "../../../shared/InputText";
-import { validarCodigoEmail } from "../../../../service/usuarioService";
+import InputText from "../../../shared/InputText/InputText";
+import { validarCodigoEmail } from "../../../../service/server/usuarioService";
 
 export default function ValidarRecuperarContaModal(props) {
   const [codigo, setCodigo] = React.useState("");

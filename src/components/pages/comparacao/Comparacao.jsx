@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import BackButton from "../../shared/BackButton/BackButton";
-import PrimaryButton from "../../shared/PrimaryButton";
+import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
 import { styles } from "./style";
 import { produtos } from "../../../fakeData/fakeData";
 

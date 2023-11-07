@@ -11,7 +11,7 @@ import {
   StyledButtonModalRecuperar,
 } from "../style";
 import Colors from "../../../../css/default/Colors";
-import InputText from "../../../shared/InputText";
+import InputText from "../../../shared/InputText/InputText";
 
 export default function RecuperarContaModal(props) {
   const [email, setEmail] = React.useState("");

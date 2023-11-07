@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Alert, FlatList, Image, Text, View } from "react-native";
 
 import { styles } from "./style";
-import PrimaryButton from "../../shared/PrimaryButton";
-import InputText from "../../shared/InputText";
+import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
+import InputText from "../../shared/InputText/InputText";
 import CardProdutoSelecionado from "./card-produto-selecionado/CardProdutoSelecionado";
 import CardProduto from "./card-produto/CardProduto";
 
-import { filtrarProdutos } from "../../../service/produtoservice";
+import { filtrarProdutos } from "../../../service/server/produtoservice";
 import { useDebounce } from "../../../utils/util";
 
 export default function Search({ navigation }) {
@@ -38,24 +38,24 @@ export default function Search({ navigation }) {
     navigation.navigate("Comparar", params);
   }
 
-  function infoProdutoHandler(idDoProduto) {
-    navigation.navigate("Info", idDoProduto);
+  function infoProdutoHandler(codBarra) {
+    navigation.navigate("Info", codBarra);
   }
 
-  function adicionarProdutoComparacao(idDoProduto, nomeDoProduto) {
-    if (produtosParaComparacao.find((item) => item.id === idDoProduto)) {
+  function adicionarProdutoComparacao(id, nome) {
+    if (produtosParaComparacao.find((item) => item.id === id)) {
       Alert.alert("Produto já foi selecionado", "Selecione outro.");
       return;
     }
     setProdutosParaComparacao([
       ...produtosParaComparacao,
-      { id: idDoProduto, nome: nomeDoProduto },
+      { id: id, nome: nome },
     ]);
   }
 
-  function removerProdutoComparacao(idDoProduto) {
+  function removerProdutoComparacao(id) {
     setProdutosParaComparacao(
-      produtosParaComparacao.filter((produto) => produto.id !== idDoProduto)
+      produtosParaComparacao.filter((produto) => produto.id !== id)
     );
   }
 
@@ -88,14 +88,16 @@ export default function Search({ navigation }) {
 
       <View style={styles.cardsProdutosContainer}>
         {!produtosMostrados || produtosMostrados.length == 0
-          ? <Image source={require("../../../assets/no-data.png")} style={{ width: 200, height: 200, alignSelf: 'center' }} />
+          ? <Image 
+            source={require("../../../assets/no-data.png")} 
+            style={styles.noDataImage} />
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={produtosMostrados}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.codBarra}
             renderItem={({ item }) => (
               <CardProduto
-                idDoProduto={item.id}
+                codBarra={item.codBarra}
                 urlImagemDoProduto={item.image}
                 nomeDoProduto={item.nome}
                 descricaoDoProduto={item.descricao}

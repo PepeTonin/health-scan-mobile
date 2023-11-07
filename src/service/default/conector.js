@@ -1,8 +1,18 @@
 import axios from "axios";
-import { defaultUrl } from "./baseUrlService";
+import { defaultUrl, apiProduto } from "./baseUrlService";
 
 const baseUrl = defaultUrl;
+const baseUrlApiProduto = apiProduto;
 
+//api
+export function getApiProduto(url) {
+  return axios({
+    method: "GET",
+    url: `${baseUrlApiProduto}${url}`,
+  });
+}
+
+//server
 export function get(url) {
   return axios({
     method: "GET",

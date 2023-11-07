@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../components/pages/login/Login";
 import Cadastrar from "../components/pages/cadastrar/Cadastrar";
 import { AuthContext } from "../contexts/auth";
-import BottomTabRouter from "./BottomTabRouter";
+import StackDefaultNavigator from "./StackDefaultNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ export default function StackLoginRouter() {
           <Stack.Screen name="Cadastrar" component={Cadastrar} />
         </Stack.Navigator>
       ) : (
-        <BottomTabRouter />
+        <StackDefaultNavigator />
       )}
     </>
   );

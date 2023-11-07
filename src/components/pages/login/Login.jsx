@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Alert, View } from "react-native";
 import { Button, Text, PaperProvider } from "react-native-paper";
-import InputText from "../../shared/InputText";
+import InputText from "../../shared/InputText/InputText";
 import Colors from "../../../css/default/Colors";
 import {
   StyledContainer,
@@ -21,7 +21,7 @@ import {
   logar,
   logarToken,
   validarCodigoEmail,
-} from "../../../service/usuarioService";
+} from "../../../service/server/usuarioService";
 import ValidarCodigoModal from "../cadastrar/modal/ValidarCodigoModal";
 import { AuthContext } from "../../../contexts/auth";
 import {
@@ -30,7 +30,7 @@ import {
   removerUsuario,
 } from "../../../database/usuarioPercistence";
 import { sha256 } from "../../../utils/cripto";
-import PrimaryButton from "../../shared/PrimaryButton";
+import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
 
 export default function Login({ navigation }) {
   const [login, setLogin] = useState("");

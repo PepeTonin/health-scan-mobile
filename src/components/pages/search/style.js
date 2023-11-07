@@ -25,4 +25,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 20,
   },
+  noDataImage: {
+    width: 200,
+    height: 200,
+    alignSelf: 'center'
+  }
 });

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
-import InputText from "../../shared/InputText";
+import InputText from "../../shared/InputText/InputText";
 import ProdutosPesquisados from "./produtos-pesquisados/ProdutosPesquisados";
 import ComparacoesSalvas from "./comparacoes-salvas/ComparacoesSalvas";
 import { AuthContext } from "../../../contexts/auth";
-import { buscarUltimosProdutos } from "../../../service/produtoPesquisadoService";
+import { buscarUltimosProdutos } from "../../../service/server/produtoPesquisadoService";
 import { StyledContainer, StyledSubtitle, StyledTitle } from "./style";
 
 export default function Home() {
