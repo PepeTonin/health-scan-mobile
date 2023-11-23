@@ -7,8 +7,13 @@ import {
 export default function ComparacoesSalvasItemDetalhe(props) {
   return (
     <StyledComparacoesSalvasItemDetalhe style={props.style}>
-      <StyledImage source={require("../../../../assets/no-image.png")} />
-      <StyledText>Produto y</StyledText>
+      <StyledImage
+        source={
+          props.imagem
+            ? { uri: props.imagem }
+            : require("../../../../assets/no-image.png")
+        }/>
+      <StyledText>{props.nome}</StyledText>
     </StyledComparacoesSalvasItemDetalhe>
   );
 }

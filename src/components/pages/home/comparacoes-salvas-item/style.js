@@ -5,16 +5,25 @@ import { IconButton, Surface, Text } from "react-native-paper";
 import Fonts from "../../../../css/default/Fonts";
 
 export const StyledSurface = styled(Surface)`
-  background-color: ${Colors.whiteLight};
-  height: 180px;
+  background-color: ${Colors.backgroundColorDark};
+  height: 200px;
   margin-vertical: 10px;
-  border-radius: 30px;
+  border-radius: 20px;
   flex-direction: row;
+`;
+
+export const StyledTextTitle = styled(Text)`
+  margin-vertical: 10px;
+  max-height: 25px;
+  width: 250px;
+  color: ${Colors.primaryFontColor};
+  font-family: ${Fonts.primaryFont};
 `;
 
 export const StyledText = styled(Text)`
   margin-vertical: 10px;
   max-height: 25px;
+  color: ${Colors.primaryFontColor};
   font-family: ${Fonts.primaryFont};
 `;
 
@@ -38,9 +47,10 @@ export const StyledInfoView = styled(View)`
 export const StyledProductName = styled(Text)`
   max-height: 25px;
   font-family: ${Fonts.primaryFont};
+  color: ${Colors.primaryFontColor};
 `;
 
 export const StyledDetailContainer = styled.View`
-  margin-top: 60px;
+  margin-top: 80px;
   align-items: flex-end;
 `;

@@ -28,6 +28,13 @@ export function put(url, data) {
   });
 }
 
+export function del(url) {
+  return axios({
+    method: "DELETE",
+    url: `${baseUrl}${url}`,
+  });
+}
+
 export function post(url, data) {
   return axios({
     method: "POST",

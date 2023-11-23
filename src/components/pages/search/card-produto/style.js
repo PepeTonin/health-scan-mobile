@@ -1,15 +1,16 @@
 import { StyleSheet } from "react-native";
 
 import Fonts from "../../../../css/default/Fonts";
+import Colors from "../../../../css/default/Colors";
 
 export const styles = StyleSheet.create({
   container: {
     elevation: 6,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    borderRadius: 25,
+    borderRadius: 10,
     marginBottom: 10,
-    backgroundColor: "white",
+    backgroundColor: Colors.backgroundColorDark,
     flexDirection: "row",
     alignItems: "center"
   },
@@ -33,11 +34,13 @@ export const styles = StyleSheet.create({
   nomeProduto: {
     fontFamily: Fonts.primaryFont,
     textAlign: "left",
+    color: Colors.primaryFontColor,
     fontSize: 18,
     marginBottom: 15,
   },
   descricao: {
     fontFamily: Fonts.primaryFont,
+    color: Colors.primaryFontColor,
     textAlign: "left",
     fontSize: 12,
   },

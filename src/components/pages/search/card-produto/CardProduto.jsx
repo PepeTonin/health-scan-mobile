@@ -2,6 +2,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { styles } from "./style";
+import Colors from "../../../../css/default/Colors";
 
 export default function CardProduto({
   codBarra,
@@ -35,9 +36,9 @@ export default function CardProduto({
       <Pressable
         style={styles.iconContainer}
         hitSlop={20}
-        onPress={() => tratarCliqueBotao(codBarra, nomeDoProduto)}
+        onPress={() => tratarCliqueBotao(codBarra, nomeDoProduto, codBarra)}
       >
-        <AntDesign style={styles.icon} name="plus" size={32} color="black" />
+        <AntDesign style={styles.icon} name="plus" size={32} color={Colors.primaryFontColor} />
       </Pressable>
     </View>
   );

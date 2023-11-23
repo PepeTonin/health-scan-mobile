@@ -13,7 +13,7 @@ export default function StackDefaultNavigator() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="BotomTahRouter" component={BottomTabRouter} />
+        <Stack.Screen name="BottomTabRouter" component={BottomTabRouter} />
         <Stack.Screen name="Comparar" component={Comparacao} />
         <Stack.Screen name="Info" component={Info} />
       </Stack.Navigator>

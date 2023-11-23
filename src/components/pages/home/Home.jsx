@@ -7,7 +7,7 @@ import { AuthContext } from "../../../contexts/auth";
 import { buscarUltimosProdutos } from "../../../service/server/produtoPesquisadoService";
 import { StyledContainer, StyledSubtitle, StyledTitle } from "./style";
 
-export default function Home() {
+export default function Home({navigation}) {
   const { isLogged, usuario, setUsuario, setIsLogged } =
     useContext(AuthContext);
 
@@ -23,15 +23,18 @@ export default function Home() {
     });
   }
 
+  function navegarInfoProduto(codBarra){
+    navigation.navigate("Info", codBarra)
+  }
+
   return (
     <StyledContainer>
       <View>
         <StyledTitle>Ultimos produtos pesquisados</StyledTitle>
-        <ProdutosPesquisados produtos={produtosPesquisados} />
+        <ProdutosPesquisados produtos={produtosPesquisados} navegarInfoProduto={navegarInfoProduto}/>
       </View>
       <View>
         <StyledSubtitle>Suas comparações salvas</StyledSubtitle>
-        <InputText title={"Buscar"} />
         <ComparacoesSalvas />
       </View>
     </StyledContainer>

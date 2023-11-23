@@ -12,22 +12,35 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginBottom: 50,
   },
   titulo: {
     color: Colors.white,
     fontFamily: Fonts.primaryFont,
     fontSize: 24,
   },
+  tituloSecundario: {
+    color: Colors.white,
+    fontFamily: Fonts.primaryFont,
+    fontSize: 18,
+  },
   noImage:{
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 30,
     backgroundColor: 'white',
     margin: 5,
+    marginTop: 15,
     alignItems: 'center'
   },
-  bottomContainer:{
+  imagemTutorial:{
+    width: 300,
+    height: 200,
+    borderRadius: 30,
+    margin: 5,
+    alignItems: 'center'
+  },
+  topContainer:{
     alignItems: 'center', 
   }
 });
