@@ -11,7 +11,11 @@ export default function CardProdutoSelecionado({
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{nomeProduto}</Text>
+      <View style={styles.textContainer}>
+        <Text numberOfLines={1} style={styles.text}>
+          {nomeProduto}
+        </Text>
+      </View>
       <Pressable hitSlop={20} onPress={() => tratarCliqueBotao(idProduto)}>
         <AntDesign
           style={styles.icon}

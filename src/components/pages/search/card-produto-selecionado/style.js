@@ -14,6 +14,9 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     maxWidth: 200,
   },
+  textContainer: {
+    maxWidth: 150,
+  },
   text: {
     color: Colors.white,
     fontFamily: Fonts.secondaryFont,
