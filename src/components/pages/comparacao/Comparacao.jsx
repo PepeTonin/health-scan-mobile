@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { FlatList, View, Text, Image } from "react-native";
 
 import BackButton from "../../shared/BackButton/BackButton";
 import PrimaryButton from "../../shared/PrimaryButton";
 import { styles } from "./style";
+
 import { produtos } from "../../../fakeData/fakeData";
+import InformacoesProduto from "./InformacoesProduto/InformacoesProduto";
 
 export default function Comparacao({ navigation, route }) {
   const [produtosParaComparar, setProdutosParaComparar] = useState([]);
 
   useEffect(() => {
+    const produtosBuscados = [];
     route.params.map((item) => {
-      const produto = produtos.find((prod) => prod.id === item.id);
-      setProdutosParaComparar([...produtosParaComparar, produto]);
+      produtosBuscados.push(produtos.find((prod) => prod.id === item.id));
+      setProdutosParaComparar(produtosBuscados);
     });
   }, []);
 
@@ -20,31 +23,24 @@ export default function Comparacao({ navigation, route }) {
     navigation.goBack();
   }
 
-  function escanearHandler() {
-    navigation.navigate("Scan");
-  }
-
-  function pesquisarHandler() {
-    navigation.navigate("Search");
-  }
-
-  function informacoesHandler() {
-    navigation.navigate("Info");
+  function salvarHandler() {
+    console.log("salvar");
   }
 
   return (
     <View style={styles.rootContainer}>
-      <View>
+      <View style={styles.headerContainer}>
         <BackButton onPress={backButtonHandler} />
-        {/* botao salvar comapracao */}
-      </View>
-      <View>
-        <PrimaryButton onPress={escanearHandler}>ESCANEAR</PrimaryButton>
-        <PrimaryButton onPress={pesquisarHandler}>PESQUISAR</PrimaryButton>
-        <PrimaryButton onPress={informacoesHandler}>
-          INFORMACOES DE UM ITEM
+        <PrimaryButton onPress={salvarHandler}>
+          <Text style={styles.textoBotao}>SALVAR</Text>
         </PrimaryButton>
       </View>
+
+      <FlatList
+        data={produtosParaComparar}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <InformacoesProduto idProduto={item.id} />}
+      />
     </View>
   );
 }

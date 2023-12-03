@@ -7,6 +7,8 @@ import InputText from "../../shared/InputText";
 import CardProdutoSelecionado from "./card-produto-selecionado/CardProdutoSelecionado";
 import CardProduto from "./card-produto/CardProduto";
 
+import { produtos } from "../../../fakeData/fakeData";
+
 import { filtrarProdutos } from "../../../service/produtoservice";
 
 export default function Search({ navigation }) {
@@ -38,11 +40,18 @@ export default function Search({ navigation }) {
     if (inputText.length === 0) {
       setProdutosMostrados([]);
     } else {
-      
-      filtrarProdutos(inputText.toLowerCase())
-      .then((result=>{
-        setProdutosMostrados(result.data.result.content)
-      }))
+      produtos.filter((item) => {
+        if (item.nome.toLowerCase().includes(inputText.toLowerCase())) {
+          setProdutosMostrados([item]);
+        }
+      });
+      // try {
+      //   filtrarProdutos(inputText.toLowerCase()).then((result) => {
+      //     setProdutosMostrados(result.data.result.content);
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
     }
   }
 
