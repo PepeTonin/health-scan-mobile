@@ -256,7 +256,7 @@ export default function Cadastrar({ navigation, route }) {
           )}
         </StyledContainerInterno>
         <StyledButtonContainer>
-          {(isNovoUsuario || loading || isRecuperarSenha) && (
+          {(isNovoUsuario || isRecuperarSenha) && !loading && (
             <Button
               textColor={Colors.primaryFontColorButton}
               buttonColor={Colors.primaryButtonColor}

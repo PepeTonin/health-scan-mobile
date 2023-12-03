@@ -9,6 +9,7 @@ const ColorsLightMode = {
   disable: "#A3A3A3",
   link: "#0094FF",
   whiteLight: "#F4F4F4",
+  backgroundColorDark: "#F4F4F4",
   primaryColorLight: "#86B474",
   primaryColorDefault: "#5A8A4C"
 
@@ -25,6 +26,7 @@ const ColorDarkMode = {
   gray_200: "#A3A3A3",
   link: "#0094FF",
   whiteLight: "#F4F4F4",
+  backgroundColorDark: "#444444",
   primaryColorLight: "#86B474",
   primaryColorDefault: "#5A8A4C"
 };

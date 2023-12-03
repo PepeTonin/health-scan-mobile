@@ -42,14 +42,14 @@ export default function Search({ navigation }) {
     navigation.navigate("Info", codBarra);
   }
 
-  function adicionarProdutoComparacao(id, nome) {
+  function adicionarProdutoComparacao(id, nome, codBarra) {
     if (produtosParaComparacao.find((item) => item.id === id)) {
       Alert.alert("Produto já foi selecionado", "Selecione outro.");
       return;
     }
     setProdutosParaComparacao([
       ...produtosParaComparacao,
-      { id: id, nome: nome },
+      { id: id, nome: nome, codBarra: codBarra },
     ]);
   }
 

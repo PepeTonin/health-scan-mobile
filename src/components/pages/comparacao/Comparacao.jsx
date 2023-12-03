@@ -1,50 +1,37 @@
 import { useEffect, useState } from "react";
-import { View } from "react-native";
-
-import BackButton from "../../shared/BackButton/BackButton";
-import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
+import { FlatList, Text, View } from "react-native";
+import InfoItem from "../informacoesUmItem/InfoItem/InfoItem";
 import { styles } from "./style";
-import { produtos } from "../../../fakeData/fakeData";
+import BackButton from "../../shared/BackButton/BackButton";
 
 export default function Comparacao({ navigation, route }) {
-  const [produtosParaComparar, setProdutosParaComparar] = useState([]);
+
+  const [listaProdutos, setListaProdutos] = useState([]);
 
   useEffect(() => {
-    route.params.map((item) => {
-      const produto = produtos.find((prod) => prod.id === item.id);
-      setProdutosParaComparar([...produtosParaComparar, produto]);
-    });
+    setListaProdutos(route.params);
   }, []);
 
   function backButtonHandler() {
     navigation.goBack();
   }
 
-  function escanearHandler() {
-    navigation.navigate("Scan");
-  }
-
-  function pesquisarHandler() {
-    navigation.navigate("Search");
-  }
-
-  function informacoesHandler() {
-    navigation.navigate("Info");
-  }
-
   return (
     <View style={styles.rootContainer}>
-      <View>
+            <View style={styles.header}>
         <BackButton onPress={backButtonHandler} />
-        {/* botao salvar comapracao */}
+        <Text style={styles.titulo}>Comparação de Produtos</Text>
+        <View style={styles.placeholderView}></View>
       </View>
-      <View>
-        <PrimaryButton onPress={escanearHandler}>ESCANEAR</PrimaryButton>
-        <PrimaryButton onPress={pesquisarHandler}>PESQUISAR</PrimaryButton>
-        <PrimaryButton onPress={informacoesHandler}>
-          INFORMACOES DE UM ITEM
-        </PrimaryButton>
-      </View>
+      <FlatList
+        data={listaProdutos}
+        keyExtractor={(_, i) => i}
+        renderItem={(item) =>
+          <>
+            <View style={{marginTop: 20}}></View>
+            <InfoItem codBarra={item.item.codBarra} />
+          </>
+        } />
     </View>
   );
 }
