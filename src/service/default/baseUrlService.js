@@ -1,5 +1,5 @@
 //Endereço de api
-const openFoodFacts = "https://world.openfoodfacts.org/api/v4/"
+const openFoodFacts = "https://world.openfoodfacts.org/api/v4/" 
 
 //Endereço do servidor
 const dev = "http://192.168.187.5:8080/" 
