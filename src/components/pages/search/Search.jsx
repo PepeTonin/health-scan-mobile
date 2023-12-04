@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, FlatList, Image, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { styles } from "./style";
 import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
@@ -9,19 +10,35 @@ import CardProduto from "./card-produto/CardProduto";
 
 import { filtrarProdutos } from "../../../service/server/produtoservice";
 import { useDebounce } from "../../../utils/util";
+import { useCallback } from "react";
 
-export default function Search({ navigation }) {
+export default function Search({ navigation, route }) {
   const [inputText, setInputText] = useState("");
   const [produtosMostrados, setProdutosMostrados] = useState([]);
   const [produtosParaComparacao, setProdutosParaComparacao] = useState([]);
-  const searchQuery = useDebounce(inputText, 300)
+  const searchQuery = useDebounce(inputText, 300);
+
+  useFocusEffect(
+    useCallback(() => {
+      const unsubscribe = navigation.addListener("focus", () => {
+        if (route.params) {
+          if (route.params.produtosEmComparacao) {
+            setProdutosParaComparacao(route.params.produtosEmComparacao);
+          }
+        } else {
+          setProdutosParaComparacao([]);
+        }
+      });
+      return () => unsubscribe();
+    })
+  );
 
   useEffect(() => {
     const query = inputText.toLowerCase();
     filtrarProdutos(query).then((result) => {
       setProdutosMostrados(result.data.result.content);
     });
-  }, [searchQuery])
+  }, [searchQuery]);
 
   function compararHandler() {
     if (produtosParaComparacao.length < 2) {
@@ -31,7 +48,7 @@ export default function Search({ navigation }) {
       );
       return;
     }
-    const params = [...produtosParaComparacao];
+    const params = { itensParaComparacao: [...produtosParaComparacao] };
     setInputText("");
     setProdutosMostrados([]);
     setProdutosParaComparacao([]);
@@ -87,11 +104,13 @@ export default function Search({ navigation }) {
       </View>
 
       <View style={styles.cardsProdutosContainer}>
-        {!produtosMostrados || produtosMostrados.length == 0
-          ? <Image 
-            source={require("../../../assets/no-data.png")} 
-            style={styles.noDataImage} />
-          : <FlatList
+        {!produtosMostrados || produtosMostrados.length == 0 ? (
+          <Image
+            source={require("../../../assets/no-data.png")}
+            style={styles.noDataImage}
+          />
+        ) : (
+          <FlatList
             showsVerticalScrollIndicator={false}
             data={produtosMostrados}
             keyExtractor={(item) => item.codBarra}
@@ -105,7 +124,8 @@ export default function Search({ navigation }) {
                 tratarCliqueCard={infoProdutoHandler}
               />
             )}
-          />}
+          />
+        )}
       </View>
 
       <PrimaryButton onPress={compararHandler}>COMPARAR</PrimaryButton>

@@ -14,31 +14,35 @@ export default function InfoItem(props) {
   const [produto, setProduto] = useState();
   const [state, setState] = useState(0); //0-> carregando 1-> encontrado 2-> não encontrado
   const nutriments = [
-    { chave: "carboidratos", valor: "carbohydrates_value" },
     { chave: "KCAL", valor: "energy-kcal_value" },
+    { chave: "carboidratos", valor: "carbohydrates_value" },
     { chave: "gorduras", valor: "fat_value" },
-    { chave: "proteinas", valor: "proteins_value" }]
+    { chave: "proteinas", valor: "proteins_value" },
+    { chave: "sodio", valor: "sodium_value" },
+    { chave: "açúcar", valor: "sugars_value" },
+  ];
 
-    const { isLogged, usuario, setUsuario, setIsLogged } = useContext(AuthContext);
+  const { isLogged, usuario, setUsuario, setIsLogged } =
+    useContext(AuthContext);
 
   useEffect(() => {
     setState(0);
 
     const codBarra = props.codBarra;
-    console.log(codBarra)
+    console.log(codBarra);
     findProdutoByCodBarra(codBarra)
       .then((item) => {
         setProduto(item.data.product);
         setState(1);
 
         const produtoPesquisado = {
-          usuario: {id: usuario.id},
-          produto: {codBarra: codBarra},
+          usuario: { id: usuario.id },
+          produto: { codBarra: codBarra },
           descricaoProduto: item.data.product.product_name,
           imagemProduto: item.data.product.image_url,
-          codBarra: codBarra
-        }
-        saveProdutoPesquisado(produtoPesquisado)
+          codBarra: codBarra,
+        };
+        saveProdutoPesquisado(produtoPesquisado);
       })
       .catch((e) => {
         setState(2);
@@ -51,27 +55,24 @@ export default function InfoItem(props) {
 
   return (
     <>
-
       {state == 1 && produto ? (
-        <View>
+        <View style={{marginBottom: 30}}>
           <View>
             <View style={styles.imageInfoContainer}>
-              <Image
-                style={styles.image}
-                source={{ uri: produto.image_url }}
-              />
+              <Image style={styles.image} source={{ uri: produto.image_url }} />
               <View style={styles.infoContainer}>
                 <Text style={styles.titulo}>{produto.product_name}</Text>
                 <Text style={styles.textoDestaque}>
-                  Categoria: {produto.categories}
+                  {produto.categories
+                    ? `Categoria: ${produto.categories}`
+                    : "Categoria não encontrada"}
                 </Text>
-                <Text style={styles.textoDestaque}>Alergicos: </Text>
                 <View style={styles.alergicosContainer}>
-                  {/*produto.alergicos.map((item, index) => (
-                    <Text style={styles.textoNormal} key={index}>
-                      {item}
-                    </Text>
-                  ))*/}
+                  <Text style={styles.textoDestaque}>
+                    {produto.allergens
+                      ? `Alergicos: ${produto.allergens}`
+                      : "Alérgicos não encontrados"}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -81,55 +82,57 @@ export default function InfoItem(props) {
             </View>
           </View>
           <Text style={styles.textoDestaque}>
-            Tabela nutricional (valores por 100g de produto)
+            {produto.nutrition_data_prepared_per
+              ? `Tabela nutricional (valores por ${produto.nutrition_data_prepared_per} de produto)`
+              : "Tabela nutricional (valores por porção)"}
           </Text>
           {produto.nutriments && (
             <View>
-              {nutriments.map((item, i) =>
+              {nutriments.map((item, i) => (
                 <View key={i}>
                   <View style={styles.itemTabelaNutricionalContainer}>
                     <Text style={styles.textoNormal}>{item.chave + ": "}</Text>
 
                     <Text style={styles.textoNormal}>
                       {produto.nutriments[item.valor]
-                        ? (produto.nutriments[item.valor] + " " + produto.nutriments[item.valor.replace("value", "unit")])
+                        ? produto.nutriments[item.valor] +
+                          " " +
+                          produto.nutriments[
+                            item.valor.replace("value", "unit")
+                          ]
                         : "---"}
                     </Text>
                   </View>
                 </View>
-              )}
-            </View>
-          )
-          }
-          {/*produto.ingredients &&
-            <View>
-              <Text style={styles.textoDestaque}>Ingredientes</Text>
-              {produto.ingredients.map((item, index) => (
-                <Text style={[styles.textoNormal, styles.textoCorpo]} key={index}>
-                  {item}
-                </Text>
               ))}
             </View>
-              */}
+          )}
         </View>
-      )
-        : state == 0 ?
-          <View>
-            <ActivityIndicator
-              size={'large'}
-              animating={true}
-              color={Colors.primaryFontColor} />
-
-          </View>
-          :
-          <View style={{ alignSelf: 'center', alignItems: 'center' }}>
-            <Image style={{ width: 150, height: 150 }} source={require("../../../../assets/no-data.png")} />
-            <Text style={{
+      ) : state == 0 ? (
+        <View>
+          <ActivityIndicator
+            size={"large"}
+            animating={true}
+            color={Colors.primaryFontColor}
+          />
+        </View>
+      ) : (
+        <View style={{ alignSelf: "center", alignItems: "center" }}>
+          <Image
+            style={{ width: 150, height: 150 }}
+            source={require("../../../../assets/no-data.png")}
+          />
+          <Text
+            style={{
               color: Colors.white,
               fontFamily: Fonts.primaryFont,
-              fontSize: 15
-            }}>Produto não encontrado em nossa base</Text>
-          </View>}
+              fontSize: 15,
+            }}
+          >
+            Produto não encontrado em nossa base
+          </Text>
+        </View>
+      )}
     </>
   );
 }

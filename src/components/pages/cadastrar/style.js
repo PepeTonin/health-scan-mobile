@@ -33,7 +33,7 @@ export const StyledTitle = styled(Text)`
 export const StyledButtonContainer = styled.View`
   margin-horizontal: 30px;
   margin-bottom: 40px;
-  margin-top: 30pxx;
+  margin-top: 30px;
 `;
 
 export const StyledTextError = styled(Text)`

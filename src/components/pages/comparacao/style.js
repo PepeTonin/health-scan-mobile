@@ -30,9 +30,6 @@ export const styles = StyleSheet.create({
     height: 100,
     borderRadius: 20,
     marginRight: 10,
-
-    // TIRAR BACKGROUND COLOR QUANDO TIVER IMAGEM REAL
-    backgroundColor: "#FF000033",
   },
   alergicosContainer: {
     flexDirection: "row",
