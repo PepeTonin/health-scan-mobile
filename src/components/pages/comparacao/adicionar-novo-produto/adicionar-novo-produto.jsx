@@ -19,10 +19,10 @@ export default function AdicionarNovoProduto({
       </View>
       <View style={styles.buttonsContainer}>
         <PrimaryButton onPress={handleAdicionarNovoProduto}>
-          Adicionar novo produto
+          Adicionar produto
         </PrimaryButton>
         <PrimaryButton onPress={handlerEscanearNovoProduto}>
-          Escanear novo produto
+          Escanear produto
         </PrimaryButton>
       </View>
     </View>
