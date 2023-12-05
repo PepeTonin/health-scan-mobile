@@ -19,16 +19,25 @@
         }
       ]
     ],
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.rian3054.healthscanapp"
+      "bundleIdentifier": "com.rian3054.healthscanapp",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access camera.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "package": "com.rian3054.healthscanapp"
+      "package": "com.rian3054.healthscanapp",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -38,6 +47,11 @@
     },
     "updates": {
       "url": "https://u.expo.dev/a6ab506d-abff-40bb-b774-45fe8b24530a"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a6ab506d-abff-40bb-b774-45fe8b24530a"
+      }
     }
   }
 }
