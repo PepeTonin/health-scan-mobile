@@ -10,5 +10,8 @@ O nosso aplicativo utiliza uma base de dados global de produtos, permitindo que 
 
 A aplicação permite escanear embalagens de produtos para visualizar as informações nutricionais sobre este produto escaneado.
 
-## Como escanear produtos:
+## Como escanear produtos
 Para visualizar as informações sobre determinado produto, basta entrar na tela em que abrirá a câmera e mirá-la no código de barras da embalagem.
+
+## Comparar produtos
+Para comparar produtos é possivél escanear um produto e comparar o mesmo ou pesquisar produtos e comparar todos de uma vez na tela de listagem de produto.
